@@ -17,6 +17,8 @@
             <a class="navbar-brand" href="#">Sale</a>
          </div>
          <ul class="nav navbar-nav">
+            <li><%= link_to "All Sales", sales_path %></li>
+            <li><%= link_to "All Products", products_path %></li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
