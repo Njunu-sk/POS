@@ -57,3 +57,4 @@ gem 'devise'
 gem 'cancancan'
 gem "nested_form"
 gem 'public_activity'
+gem 'devise-bootstrap-views', '~> 1.0'
