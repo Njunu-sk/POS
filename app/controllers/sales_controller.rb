@@ -26,6 +26,7 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(sale_params)
     @sale.user_id = current_user.id
+    @sale.total = @sale.total_all
 
     respond_to do |format|
       if @sale.save
@@ -70,6 +71,7 @@ class SalesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sale_params
-      params.require(:sale).permit(:name, :total, :user_id)
+      params.require(:sale).permit(:name, items_attributes: Item.attribute_names.map(&:to_sym).push(:_destroy) )
     end
 end
+#(:name, items_attributes: [:id,:product_id, :price,:quantity,:total,:_destroy])

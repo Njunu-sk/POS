@@ -55,6 +55,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'cancancan'
-gem "nested_form"
+gem "cocoon"
 gem 'public_activity'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'simple_form'
