@@ -59,3 +59,4 @@ gem "cocoon"
 gem 'public_activity'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'simple_form'
+gem 'public_activity'

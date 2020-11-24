@@ -14,9 +14,9 @@
   <nav class="navbar navbar-dark bg-dark navbar-fixed-top" role="navigation">
        <div class="container">
          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Sale</a>
-            <%= link_to "All Sales", sales_path %>
             <%= link_to "All Products", products_path %>
+            <%= link_to "All Sales", sales_path %>
+            <%= link_to "All Activities", activities_path %>
          </div>
          <div class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
