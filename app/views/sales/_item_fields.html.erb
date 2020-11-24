@@ -1,8 +1,9 @@
- <fieldset>
-  <%= f.label :product, "Product" %>
-  <%= f.collection_select :product_id, Product.all, :id, :name %>
-  <%= f.label :quantity, "Quantity" %>
-  <%= f.text_field :quantity, class: 'padli' %>
-  <%= f.hidden_field :_destroy %>
-  <%= link_to "remove", '#', class: "remove_fields" %>
- </fieldset>
+
+ <tr class="nested-fields">
+   <td><%=f.collection_select :product_id, Product.all, :id, :name %></td>
+   <td><%=f.input :quantity, class: 'padli' %></td>
+   <td><%= f.hidden_field :_destroy %>  </td>
+    <td>
+   <%= link_to_remove_association "remove items", f, class: 'btn btn-primary btn-xs' %>
+   </td>
+ </tr>

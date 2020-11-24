@@ -1,50 +1,38 @@
-<%= form_with(model: sale, local: true) do |f| %>
-  <% if sale.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
-
-      <ul>
-        <% sale.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<%= simple_form_for(@sale) do |f| %>
+ <% if @sale.errors.any? %>
+  <div id="error_explanation">
+   <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+   <ul>
+   <% @sale.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+   </ul>
   </div>
-  <div class="field">
-  <%= f.fields_for :items do |builder| %>
-    <%= render 'item_fields', f: builder %>
-  <% end %>
-  <fieldset>
-    <%= f.label :product, "Product" %>
-    <%= f.collection_select :product_id, Product.all, :id, :name %>
-    <%= f.label :quantity, "Quantity" %>
-    <%= f.text_field :quantity, class: 'padli' %>
-    <%= f.hidden_field :_destroy %>
-    <%= link_to "remove", '#', class: "remove_fields" %>
-  </fieldset>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+ <% end %>
+ <div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+ </div>
+<h3>Items</h3>
 
-<script type="text/javascript">
-  jQuery(function() {
-   $('form').on('click', '.remove_fields', function(event) {
-   $(this).prev('input[type=hidden]').val('1');
-   $(this).closest('fieldset').hide();
-   return event.preventDefault();
-   });
-   return $('form').on('click', '.add_fields', function(event) {
-   var regexp, time;
-   time = new Date().getTime();
-   regexp = new RegExp($(this).data('id'), 'g');
-   $(this).before($(this).data('fields').replace(regexp, time));
-   return event.preventDefault();
-   });
-  });
-  </script>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody class='items'>
+      <%= f.simple_fields_for :items do |builder| %>
+        <%= render 'item_fields', f: builder %>
+      <% end %>
+    </tbody>
+
+  </table>
+
+ <div class="actions">
+  <%= f.submit %>
+  <%= link_to_add_association 'Add Item', f, :items, class: 'btn btn-primary', data: { association_insertion_node: '.items', association_insertion_method: :append } %>
+ </div>
+
+<% end %>
